@@ -61,6 +61,8 @@ stm：该线程在内核态所执行的时间<br>
   
   1) 主线程处于waiting，说明其正在等待其他线程来notify它，堆栈同样是等锁，分析思路一样。<br>
   2) 主线程处于Sleeping状态，说明当前线程主动调用sleep，其堆栈通常是sleeping on <锁ID>。
+
+    [死锁案例一](https://blog.csdn.net/m0_65145113/article/details/122125468?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522171159002816800182770796%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fall.%2522%257D&request_id=171159002816800182770796&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~first_rank_ecpm_v1~rank_v31_ecpm-5-122125468-null-null.142^v100^pc_search_result_base4&utm_term=android%E4%B8%AD%E6%AD%BB%E9%94%81%E5%AF%BC%E8%87%B4anr%E7%9A%84%E6%A1%88%E4%BE%8B&spm=1018.2226.3001.4187)
 - ##### Binder阻塞等待
 
   Binder阻塞等待指的是什么呢？
