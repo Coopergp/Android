@@ -345,9 +345,24 @@ RecyclerView 是以 ViewHolder 单位来进行回收，Recycler 是 RecyclerView
 ##### RecyclerView优化
 1. 布局优化，尽量少的布局嵌套，尽量少的控件
 2. 如果RecyclerView条目高度固定，使用setHasFixedSize(true),避免多次测量条目高度
+
+   如果RecyclerView大小本身是固定的并且不会因其内容而改变，则使用它setHasFixedSize(true)可以通过避免不必要的布局计算来帮助提高性能。
+   ```
+   val recyclerView = findViewById<RecyclerView>(R.id.recyclerView) 
+   recyclerView.setHasFixedSize( true ) // 为 RecyclerView 启用固定大小
+   ```
 3. 小范围修改可以试试adapter.notifyItemChanged(position)或者adapter.notifyItemRangeChanged(positionStart,itemcount)
 4. 如果不需要动画，就把条目显示动画取消setSupportsChangeAnimations(false)
 5. 滚动状态停止加载图片，只有当处于停止状态才去加载图片。
 6. Glide去加载图片
+
+   处理图像时，建议使用提供位图池的图像库。这可以防止过多的内存使用和频繁的垃圾收集。
+   ```
+   Glide.with( this ) 
+    .load(imageUrl) 
+    .placeholder(R.drawable.placeholder_image) 
+    .error(R.drawable.error_icon) 
+    .into(imageView)
+   ```
 7. 在ViewHolder中设置点击事件而不是在onBindViewHolder
 
